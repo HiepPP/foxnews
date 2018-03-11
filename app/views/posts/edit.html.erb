@@ -1,0 +1,57 @@
+<div class="col-md-12">
+  <!-- general form elements -->
+  <div class="box box-primary">
+    <div class="box-header with-border">
+      <h3 class="box-title">Edit post</h3>
+    </div>
+    <!-- /.box-header -->
+    </form>
+
+    <%= form_for @post do |item| %>
+
+        <% if @post.errors.any? %>
+            <h3>some errors were found: </h3>
+            <ul>
+              <% object.errors.full_message.each do |message| %>
+                <li> <%=	 message %> </li>
+              <%end%>
+            </ul>
+        <%end%>
+
+
+
+        <div class="box-body">
+          <div class="form-group">
+            <%= item.label :name %>
+            <%= item.text_field :name , class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= item.label :summary %>
+            <%= item.text_field :summary , class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= item.label :content %>
+            <%= item.text_field :content , class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= item.label :image%>
+            <%=	 item.file_field :image %>
+          </div>
+
+          <%= image_tag @post.image.url if @post.image.exists? %>
+
+          <%=	 item.check_box :status %> Active
+        </div>
+        <div class="box-footer">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    <%end%>
+
+
+
+  </div>
+  <!-- /.box -->
+</div>
